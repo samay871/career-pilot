@@ -27,10 +27,29 @@ import { initializeSocket } from './config/socket.js';
 
 import { initializeDefaultChannels } from './controllers/communityFirebaseController.js';
 import { initializePostScheduler } from './services/postScheduler.js';
+import swaggerUi from 'swagger-ui-express';
+import swaggerSpec from './config/swagger.js';
 
-import { connectDB } from './config/database.js';
+import { connectDB as baseConnectDB } from './config/database.js';
 import { initJobFetcher } from './services/jobFetcher.js';
 import JobAlert from './models/JobAlert.model.js';
+import { initGitHubSyncCron } from './services/portfolioGitHubSync.js';
+
+const shouldInitGitHubSyncCron =
+  process.env.ENABLE_GITHUB_SYNC_CRON !== 'false' &&
+  process.env.NODE_ENV !== 'test';
+
+const connectDB = async (...args) => {
+  await baseConnectDB(...args);
+
+  if (shouldInitGitHubSyncCron) {
+    initGitHubSyncCron();
+  }
+};
+
+import {
+  scheduleWeeklyDigest
+} from './services/weeklyDigestService.js';
 
 const app = express();
 const httpServer = createServer(app);
@@ -168,6 +187,15 @@ const startServer = async () => {
       await initJobFetcher();
     } catch (fetcherError) {
       console.warn('⚠️ Job fetcher initialization skipped:', fetcherError.message);
+    }
+
+    try {
+      scheduleWeeklyDigest();
+    } catch (digestError) {
+      console.warn(
+        '⚠️ Weekly digest scheduler initialization skipped:',
+        digestError.message
+      );
     }
 
   } catch (error) {
