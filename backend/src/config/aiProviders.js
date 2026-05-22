@@ -3,6 +3,7 @@ import OpenAI from 'openai';
 import Groq from 'groq-sdk';
 import dotenv from 'dotenv';
 import { OpenRouterAdapter } from './providers/openrouter.js';
+import { ApiError } from '../middleware/errorHandler.js';
 import { aiCallsCounter } from '../middleware/metrics.js';
 
 dotenv.config();
@@ -215,12 +216,11 @@ export function getDefaultProvider() {
 
   const geminiApiKey = process.env.GEMINI_API_KEY;
   if (!geminiApiKey) {
-    const err = new Error(
+    throw new ApiError(
+      503,
       'AI features are unavailable — GEMINI_API_KEY is not configured. ' +
       'Set it in your .env file or supply your own key via the X-AI-Key header.'
     );
-    err.statusCode = 503;
-    throw err;
   }
 
   _defaultProvider = createAIProvider('gemini', geminiApiKey);
