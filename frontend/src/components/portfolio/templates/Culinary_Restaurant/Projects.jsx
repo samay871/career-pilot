@@ -38,34 +38,34 @@ const culinaryProjects = [
 ];
 
 export default function Projects() {
+  // Theme uses shared app tokens so this page follows global light/dark selection.
   // State handles for smooth micro-interactions across mouse hovers and keyboard focus tracks
   const [hoveredCard, setHoveredCard] = useState(null);
   const [hoveredTag, setHoveredTag] = useState(null);
 
   return (
-    <section className="w-full min-h-screen bg-stone-50 text-stone-900 py-16 px-4 sm:px-6 lg:px-8 selection:bg-amber-100 selection:text-amber-900">
+    <section className="w-full min-h-screen bg-background text-foreground py-16 px-4 sm:px-6 lg:px-8 selection:bg-primary selection:text-primary-foreground transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         
-        {/* Michelin-Inspired Premium Header Section */}
+        {/* Deep Blue Premium Header Section */}
         <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 bg-amber-100 text-amber-950 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase shadow-sm">
-            {/* aria-hidden added to decorative animated icons */}
-            <Sparkles size={14} className="animate-spin text-amber-600" style={{ animationDuration: '4s' }} aria-hidden="true" />
+          <div className="inline-flex items-center gap-2 bg-card/80 text-muted-foreground px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase border border-border shadow-sm">
+            <Sparkles size={14} className="animate-spin text-primary" style={{ animationDuration: '4s' }} aria-hidden="true" />
             <span>Signature Work</span>
           </div>
           
-          <h2 className="text-4xl sm:text-5xl font-serif font-black tracking-tight text-stone-900">
+          <h2 className="text-4xl sm:text-5xl font-sans font-bold tracking-tight text-foreground">
             Culinary Creations & Projects
           </h2>
           
-          <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-amber-500 to-transparent mx-auto rounded-full" />
+          <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto rounded-full" />
           
-          <p className="text-stone-600 font-sans text-sm sm:text-base leading-relaxed max-w-xl mx-auto pt-2">
+          <p className="text-muted-foreground font-sans text-sm sm:text-base leading-relaxed max-w-xl mx-auto pt-2">
             A showcase of gastronomic concepts, high-performance kitchen layouts, and curated dining experiences executed across the globe.
           </p>
         </div>
 
-        {/* Responsive Flex / Grid Layout Grid */}
+        {/* Responsive Layout Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-2">
           {culinaryProjects.map((project) => {
             const IconComponent = project.icon;
@@ -77,96 +77,98 @@ export default function Projects() {
                 href={`#project-${project.id}`}
                 onMouseEnter={() => setHoveredCard(project.id)}
                 onMouseLeave={() => setHoveredCard(null)}
-                /**
-                 * ACCESSIBILITY OPTIMIZATION (Copilot Fix):
-                 * Added structural support for keyboard navigation using onFocus and onBlur.
-                 * Now, navigating via the 'Tab' key safely triggers identical luxury focus transitions.
-                 */
                 onFocus={() => setHoveredCard(project.id)}
                 onBlur={() => setHoveredCard(null)}
                 style={{ 
                   cursor: 'pointer',
                   transform: isCardHovered ? 'translateY(-8px) scale(1.01)' : 'translateY(0px) scale(1)',
-                  boxShadow: isCardHovered ? '0 25px 50px -12px rgba(120, 113, 108, 0.25)' : '0 4px 6px -1px rgba(0, 0, 0, 0.05)',
-                  borderColor: isCardHovered ? '#f59e0b' : '#e7e5e4',
                   transition: 'all 500ms cubic-bezier(0.16, 1, 0.3, 1)',
                   textDecoration: 'none'
                 }}
-                className="relative bg-white rounded-2xl border flex flex-col justify-between overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
+                className={`relative rounded-2xl border flex flex-col justify-between overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-primary bg-card/40 transition-all duration-500 ${
+                  isCardHovered 
+                    ? 'border-primary shadow-xl shadow-primary/20 bg-card/80' 
+                    : 'border-border shadow-sm'
+                }`}
               >
                 {/* Image-Free Visual Header Area Block */}
-                <div className="relative h-44 bg-gradient-to-br from-stone-900 to-stone-800 p-6 flex items-center justify-center overflow-hidden">
+                <div className="relative h-44 bg-gradient-to-br from-background via-card to-muted p-6 flex items-center justify-center overflow-hidden border-b border-border/50">
                   {/* Fine Geometric Background Grid pattern overlay */}
                   <div 
                     style={{ 
                       transform: isCardHovered ? 'scale(1.2) translateY(4px)' : 'scale(1) translateY(0px)',
                       transition: 'transform 700ms cubic-bezier(0.16, 1, 0.3, 1)'
                     }}
-                    className="absolute inset-0 opacity-[0.07] bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:10px_10px]" 
+                    className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:10px_10px]" 
                   />
                   
                   {/* Fine Framing Accents lines */}
                   <div 
-                    style={{ borderColor: isCardHovered ? 'rgba(245, 158, 11, 0.3)' : 'rgba(255, 255, 255, 0.1)' }}
-                    className="absolute inset-4 border rounded-xl pointer-events-none transition-colors duration-500" 
+                    className={`absolute inset-4 border rounded-xl pointer-events-none transition-colors duration-500 ${
+                      isCardHovered ? 'border-primary/30' : 'border-border'
+                    }`}
                   />
                   
                   {/* Central Animated Floating Icon Badge Circle */}
                   <div 
                     style={{ 
-                      backgroundColor: isCardHovered ? '#f59e0b' : '#1c1917',
-                      color: isCardHovered ? '#0c0a09' : '#fbbf24',
                       transform: isCardHovered ? 'scale(1.1) rotate(12deg)' : 'scale(1) rotate(0deg)',
                       transition: 'all 500ms cubic-bezier(0.16, 1, 0.3, 1)'
                     }}
-                    className="relative z-10 w-16 h-16 rounded-full border border-white/10 flex items-center justify-center shadow-xl"
+                    className={`relative z-10 w-16 h-16 rounded-full border flex items-center justify-center shadow-xl transition-all duration-500 ${
+                      isCardHovered 
+                        ? 'bg-primary text-primary-foreground border-primary' 
+                        : 'bg-card text-primary border-border'
+                    }`}
                   >
-                    {/* STYLING ACCESSIBILITY FIX: Added aria-hidden="true" to decorative graphical SVGs */}
-                    <IconComponent size={26} aria-hidden="true" />
+                    <IconComponent size={24} aria-hidden="true" />
                   </div>
                 </div>
 
                 {/* Main Text Content Wrapper Frame */}
-                <div className="p-6 sm:p-8 flex-grow flex flex-col justify-between bg-white relative">
+                <div className="p-6 sm:p-8 flex-grow flex flex-col justify-between bg-card/20 relative">
                   <div>
                     <span 
-                      style={{ color: isCardHovered ? '#b45309' : '#d97706' }}
-                      className="text-xs font-bold uppercase tracking-widest block mb-2 font-mono transition-colors duration-300"
+                      className={`text-xs font-bold uppercase tracking-widest block mb-2 font-mono transition-colors duration-300 ${
+                        isCardHovered ? 'text-secondary' : 'text-primary'
+                      }`}
                     >
                       {project.category}
                     </span>
                     
                     <h3 
-                      style={{ color: isCardHovered ? '#78350f' : '#1c1917' }}
-                      className="text-xl sm:text-2xl font-serif font-bold mb-3 transition-colors duration-300"
+                      className={`text-xl sm:text-2xl font-sans font-bold mb-3 transition-colors duration-300 ${
+                        isCardHovered ? 'text-card-foreground' : 'text-foreground'
+                      }`}
                     >
                       {project.title}
                     </h3>
                     
-                    <p className="text-stone-600 text-sm leading-relaxed font-normal mb-6">
+                    <p className="text-muted-foreground text-sm leading-relaxed font-normal mb-6">
                       {project.description}
                     </p>
                   </div>
 
                   {/* Micro Metadata Statistics Container Box */}
                   <div 
-                    style={{ 
-                      backgroundColor: isCardHovered ? 'rgba(254, 243, 199, 0.2)' : 'rgba(245, 245, 244, 0.5)',
-                      borderColor: isCardHovered ? 'rgba(251, 191, 36, 0.3)' : '#f5f5f4'
-                    }}
-                    className="grid grid-cols-2 gap-2 py-3 px-4 mb-6 rounded-xl border text-xs font-mono text-stone-500 transition-all duration-500"
+                    className={`grid grid-cols-2 gap-2 py-3 px-4 mb-6 rounded-xl border text-xs font-mono transition-all duration-500 ${
+                      isCardHovered 
+                        ? 'bg-accent/70 border-primary/50 text-accent-foreground' 
+                        : 'bg-muted/40 border-border text-muted-foreground'
+                    }`}
                   >
                     <div className="flex items-center gap-1">⏱ {project.stats.prep}</div>
                     <div 
-                      style={{ color: isCardHovered ? '#78350f' : '#44403c' }}
-                      className="text-right font-semibold transition-colors"
+                      className={`text-right font-semibold transition-colors ${
+                        isCardHovered ? 'text-card-foreground' : 'text-foreground'
+                      }`}
                     >
                       ★ {project.stats.rating}
                     </div>
                   </div>
 
                   {/* Footer Interactive Dynamic Pill Tags */}
-                  <div className="border-t border-stone-100 pt-6">
+                  <div className="border-t border-border pt-6">
                     <div className="flex flex-wrap gap-1.5 mb-6">
                       {project.tags.map((tag, index) => {
                         const tagKey = `${project.id}-${index}`;
@@ -177,14 +179,11 @@ export default function Projects() {
                             key={index}
                             onMouseEnter={() => setHoveredTag(tagKey)}
                             onMouseLeave={() => setHoveredTag(null)}
-                            style={{ 
-                              cursor: 'pointer',
-                              backgroundColor: isTagHovered ? '#78350f' : '#f5f5f4',
-                              color: isTagHovered ? '#ffffff' : '#44403c',
-                              borderColor: isTagHovered ? '#78350f' : 'rgba(231, 229, 230, 0.4)',
-                              transition: 'all 300ms ease-out'
-                            }}
-                            className="text-[11px] font-medium tracking-wide font-sans px-3 py-1 rounded-md border shadow-sm"
+                            className={`text-[11px] font-medium tracking-wide font-sans px-3 py-1 rounded-md border shadow-sm cursor-pointer transition-all duration-300 ${
+                              isTagHovered 
+                                ? 'bg-primary text-primary-foreground border-primary' 
+                                : 'bg-muted text-muted-foreground border-border'
+                            }`}
                           >
                             {tag}
                           </span>
@@ -195,13 +194,13 @@ export default function Projects() {
                     {/* Premium Interactive Action Bar Styling element */}
                     <div 
                       style={{ 
-                        backgroundColor: isCardHovered ? '#1c1917' : '#f5f5f4',
-                        color: isCardHovered ? '#ffffff' : '#1c1917',
-                        borderColor: isCardHovered ? '#1c1917' : 'rgba(231, 229, 230, 0.6)',
-                        boxShadow: isCardHovered ? '0 10px 15px -3px rgba(28, 25, 23, 0.15)' : 'none',
                         transition: 'all 400ms cubic-bezier(0.16, 1, 0.3, 1)'
                       }}
-                      className="w-full flex items-center justify-between text-xs font-bold uppercase tracking-wider py-3 px-4 rounded-xl border"
+                      className={`w-full flex items-center justify-between text-xs font-bold uppercase tracking-wider py-3 px-4 rounded-xl border transition-all duration-300 ${
+                        isCardHovered 
+                          ? 'bg-primary text-primary-foreground border-primary shadow-md shadow-primary/50' 
+                          : 'bg-background text-foreground border-border'
+                      }`}
                     >
                       <span>Explore Case Study</span>
                       <ArrowRight 
