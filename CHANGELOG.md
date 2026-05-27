@@ -1,3 +1,10 @@
+## [1.34.2](https://github.com/anurag3407/career-pilot/compare/v1.34.1...v1.34.2) (2026-05-27)
+
+
+### Bug Fixes
+
+* **community:** gate fix-likes behind admin UID allowlist to prevent DoS ([c5bc6ab](https://github.com/anurag3407/career-pilot/commit/c5bc6ab11bc80d9bddb9ab2161b412aa5635a9be)), closes [#1096](https://github.com/anurag3407/career-pilot/issues/1096)
+
 ## [1.34.1](https://github.com/anurag3407/career-pilot/compare/v1.34.0...v1.34.1) (2026-05-27)
 
 
