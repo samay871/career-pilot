@@ -1,3 +1,10 @@
+# [1.45.0](https://github.com/anurag3407/career-pilot/compare/v1.44.1...v1.45.0) (2026-05-27)
+
+
+### Features
+
+* **architecture-blueprint:** implement blueprint-style hero section ([9d171e4](https://github.com/anurag3407/career-pilot/commit/9d171e418f41c3e789200274d00fcd6364cac3e0))
+
 ## [1.44.1](https://github.com/anurag3407/career-pilot/compare/v1.44.0...v1.44.1) (2026-05-27)
 
 
