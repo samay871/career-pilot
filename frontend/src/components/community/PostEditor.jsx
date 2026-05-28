@@ -39,6 +39,8 @@ export default function PostEditor({ onClose, onSubmit, editPost = null }) {
   const [showScheduler, setShowScheduler] = useState(false);
   const [scheduledAt, setScheduledAt] = useState(null);
   const [showPoll, setShowPoll] = useState(false);
+  const [pollQuestion, setPollQuestion] = useState('');
+  const [pollOptions, setPollOptions] = useState(['', '']);
 
   // Attachment state — store File object + local preview URL
   const [imageFile, setImageFile] = useState(null);       // File object
@@ -118,67 +120,27 @@ export default function PostEditor({ onClose, onSubmit, editPost = null }) {
       });
     }
 
+    const normalizedOptions = pollOptions
+      .map(option => option.trim())
+      .filter(Boolean);
+    const trimmedQuestion = pollQuestion.trim();
+    const isValidPoll = trimmedQuestion.length > 0 && normalizedOptions.length >= 2;
+
     return {
       title: title.trim(),
       content: content.trim(),
       category,
       tags: tags.split(',').map(t => t.trim()).filter(Boolean),
       ...(attachments.length > 0 && { attachments }),
+      ...(showPoll && isValidPoll && {
+        poll: {
+          question: trimmedQuestion,
+          options: normalizedOptions
+        }
+      }),
       ...(scheduledAt && { scheduledAt }),
     };
   };
-const [pollQuestion, setPollQuestion] = useState('');
-
-const [pollOptions, setPollOptions] = useState([
-  '',
-  ''
-]);
-
-  const buildPostData = () => {
- const buildPostData = () => {
-  const normalizedOptions = pollOptions
-    .map(option => option.trim())
-    .filter(Boolean);
-
-  const trimmedQuestion = pollQuestion.trim();
-
-  const isValidPoll =
-    trimmedQuestion.length > 0 &&
-    normalizedOptions.length >= 2;
-
-  return {
-    title: title.trim(),
-    content: content.trim(),
-    category,
-    tags: tags.split(',').map(t => t.trim()).filter(Boolean),
-
-    ...(showPoll && isValidPoll && {
-      poll: {
-        question: trimmedQuestion,
-        options: normalizedOptions
-      }
-    }),
-
-    ...(scheduledAt && { scheduledAt })
-  };
-};
-
-  return {
-    title: title.trim(),
-    content: content.trim(),
-    category,
-    tags: tags.split(',').map(t => t.trim()).filter(Boolean),
-
-    ...(showPoll && {
-      poll: {
-        question: pollQuestion.trim(),
-        options: validOptions
-      }
-    }),
-
-    ...(scheduledAt && { scheduledAt })
-  };
-};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -520,33 +482,20 @@ const removePollOption = (index) => {
               >
                 <FileText className="w-5 h-5" />
               </button>
+              <button
+                type="button"
+                onClick={() => setShowPoll(!showPoll)}
+                aria-label={showPoll ? 'Remove poll' : 'Add poll'}
+                className={`p-2 rounded-lg transition-colors ${
+                  showPoll
+                    ? 'text-primary bg-primary/10'
+                    : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                }`}
+                title="Add Poll"
+              >
+                📊
+              </button>
             </div>
-  <button
-    type="button"
-    className="p-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg"
-    title="Add image"
-  >
-    <ImageIcon className="w-5 h-5" />
-  </button>
-
-  <button
-    type="button"
-    className="p-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg"
-    title="Add link"
-  >
-    <Link className="w-5 h-5" />
-  </button>
-
-  <button
-    type="button"
-    onClick={() => setShowPoll(!showPoll)}
-    aria-label={showPoll ? 'Remove poll' : 'Add poll'}
-    className="p-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg"
-    title="Add Poll"
-  >
-    📊
-  </button>
-</div>
 
             <div className="flex gap-2">
               <button

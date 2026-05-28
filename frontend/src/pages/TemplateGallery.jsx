@@ -11,6 +11,7 @@ import ArchitectureBlueprintHero from "../components/portfolio/templates/Archite
 import GeometricShapesAbout from "../components/portfolio/templates/Geometric_Shapes/About";
 import GeometricShapesHero from "../components/portfolio/templates/Geometric_Shapes/Hero";
 import LiquidGlass from "../components/portfolio/templates/Liquid_Glass/index";
+import MidnightGradient from "../components/portfolio/templates/Midnight_Gradient/index";
 import Navbar from '../components/Navbar'
 // import Hero from "../components/portfolio/templates/Holographic/Hero";
 // import ChooseAdventurePortfolio from "../components/portfolio/templates/Choose_Adventure/index";
@@ -426,6 +427,19 @@ export default function TemplateGallery() {
         </div>
         <div className="overflow-hidden rounded-2xl border border-border">
           <LiquidGlass />
+        </div>
+      </div>
+
+      {/* Midnight Gradient */}
+      <div className="mt-12">
+        <div className="mb-4 flex items-center gap-3 px-1">
+          <span className="rounded-full bg-indigo-500/20 px-3 py-1 text-xs font-bold uppercase tracking-widest text-indigo-400 border border-indigo-500/30">
+            Preview
+          </span>
+          <h2 className="text-lg font-semibold text-foreground/70">Midnight Gradient Theme</h2>
+        </div>
+        <div className="overflow-hidden rounded-2xl border border-border">
+          <MidnightGradient />
         </div>
       </div>
 
