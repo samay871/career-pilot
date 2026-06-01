@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect, Suspense, useMemo } from "react";
 import { templates } from '../data/templates';
 import DeployModal from "../components/portfolio/DeployModal";
 import ThemeSelector from "../components/portfolio/ThemeSelector";
+import AccessibilityReport from "../components/portfolio/AccessibilityReport";
 import { useTheme } from "../hooks/useTheme";
 import { motion, AnimatePresence } from "framer-motion";
 import { Moon, Sun, ChevronDown, Check, Eye, Star, Sparkles } from "lucide-react";
@@ -267,6 +268,26 @@ const [searchParams, setSearchParams] = useSearchParams();
 const previewTemplateId = searchParams.get("preview");
 const [hoveredCard, setHoveredCard] = useState(null);
 
+  // Accessibility Check Demo State
+  const [isA11yLoading, setIsA11yLoading] = useState(false);
+  const [a11yReport, setA11yReport] = useState(null);
+
+  const runA11yCheck = () => {
+    setIsA11yLoading(true);
+    setTimeout(() => {
+      setA11yReport({
+        score: 82,
+        issues: [
+          { severity: "critical", rule: "Images must have alt text", element: "<img src='hero.png'>", suggestion: "Add a descriptive alt attribute." },
+          { severity: "serious", rule: "Color contrast is insufficient", element: "<div class='text-gray-400 bg-white'>", suggestion: "Increase contrast ratio to at least 4.5:1." },
+          { severity: "moderate", rule: "Heading levels skipped", element: "<h4>", suggestion: "Use <h3> before <h4>." },
+          { severity: "minor", rule: "Redundant link text", element: "<a href='#'>Click here</a>", suggestion: "Use descriptive text for the link." }
+        ]
+      });
+      setIsA11yLoading(false);
+    }, 1500);
+  };
+
   const [category, setCategory] = useState("All");
   const [colorScheme, setColorScheme] = useState("All");
   const [layout, setLayout] = useState("All");
@@ -399,6 +420,14 @@ const [hoveredCard, setHoveredCard] = useState(null);
           </span>
         </div>
         <ThemeSelector selectedTheme={selectedTheme} onSelectTheme={setSelectedTheme} />
+        
+        <div className="mt-8">
+          <AccessibilityReport 
+            isLoading={isA11yLoading} 
+            report={a11yReport} 
+            onRecheck={runA11yCheck} 
+          />
+        </div>
       </div>
 
       <div className="flex flex-wrap items-center gap-3 mb-8">
