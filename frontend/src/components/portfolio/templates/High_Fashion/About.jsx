@@ -142,7 +142,7 @@ export default function About() {
       {/* ── Section label ── */}
       <motion.div
         initial={{ opacity: 0, y: -10 }} animate={inView ? { opacity: 1, y: 0 } : {}}
-        className="flex items-center justify-between px-8 md:px-16 py-6"
+        className="flex items-center justify-between px-5 md:px-16 py-5"
         style={{ borderBottom: `1px solid ${F.border}` }}>
         <div className="flex items-center gap-3">
           <span className="w-2 h-2" style={{ background: F.gold }} />
@@ -157,13 +157,13 @@ export default function About() {
       <div className="grid lg:grid-cols-2 gap-0">
 
         {/* Left — portrait + identity */}
-        <div className="relative" style={{ borderRight: `1px solid ${F.border}` }}>
+        <div className="relative" style={{ borderBottom: `1px solid ${F.border}` }}>
           {/* Portrait */}
           <motion.div
             initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}}
             transition={{ duration: 0.8 }}
             className="relative overflow-hidden"
-            style={{ height: '520px' }}>
+            style={{ height: 'clamp(280px, 50vw, 520px)' }}>
             <img
               src={data.personal.avatar}
               alt={data.personal.name}
@@ -204,16 +204,17 @@ export default function About() {
           </motion.div>
 
           {/* Stats row */}
-          <div className="grid grid-cols-3 divide-x" style={{ borderTop: `1px solid ${F.border}`, divideColor: F.border }}>
-            <div className="px-6 py-5 flex flex-col items-center" style={{ borderRight: `1px solid ${F.border}` }}>
-              <StatPill value={`${data.stats.yearsExperience}+`} label="Years" accent={F.gold} />
-            </div>
-            <div className="px-6 py-5 flex flex-col items-center" style={{ borderRight: `1px solid ${F.border}` }}>
-              <StatPill value={`${data.stats.projectsCompleted}+`} label="Projects" accent={F.charcoal} />
-            </div>
-            <div className="px-6 py-5 flex flex-col items-center">
-              <StatPill value={`${data.stats.happyClients}+`} label="Clients" accent={F.charcoal} />
-            </div>
+          <div className="grid grid-cols-3" style={{ borderTop: `1px solid ${F.border}` }}>
+            {[
+              { value: `${data.stats.yearsExperience}+`, label: 'Years', accent: F.gold },
+              { value: `${data.stats.projectsCompleted}+`, label: 'Projects', accent: F.charcoal },
+              { value: `${data.stats.happyClients}+`, label: 'Clients', accent: F.charcoal },
+            ].map(({ value, label, accent }, i) => (
+              <div key={label} className="px-4 py-4 flex flex-col items-center"
+                style={{ borderRight: i < 2 ? `1px solid ${F.border}` : 'none' }}>
+                <StatPill value={value} label={label} accent={accent} />
+              </div>
+            ))}
           </div>
 
           {/* Location */}
@@ -229,7 +230,7 @@ export default function About() {
         {/* Right — bio + skills + socials */}
         <div>
           {/* Section header */}
-          <div className="px-8 md:px-12 pt-12 pb-8">
+          <div className="px-5 md:px-12 pt-8 md:pt-12 pb-8">
             <motion.div
               initial={{ opacity: 0, x: 20 }} animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.15 }}
@@ -282,7 +283,7 @@ export default function About() {
           <MarqueeStrip />
 
           {/* Skills */}
-          <div className="px-8 md:px-12 py-8">
+          <div className="px-5 md:px-12 py-8">
             <div className="flex items-center justify-between mb-5">
               <span className="text-xs uppercase tracking-widest font-black" style={{ color: F.charcoal }}>
                 Expertise
@@ -303,9 +304,9 @@ export default function About() {
           </div>
 
           {/* Socials */}
-          <div className="px-8 md:px-12 py-6" style={{ borderTop: `1px solid ${F.border}` }}>
+          <div className="px-5 md:px-12 py-6" style={{ borderTop: `1px solid ${F.border}` }}>
             <p className="text-xs uppercase tracking-widest font-black mb-4" style={{ color: F.charcoal }}>Connect</p>
-            <div className="flex flex-wrap gap-2">
+            <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2">
               <SocialLink icon={Github}   href={data.socials.github}              label="GitHub" />
               <SocialLink icon={Linkedin} href={data.socials.linkedin}            label="LinkedIn" />
               <SocialLink icon={Twitter}  href={data.socials.twitter}             label="Twitter" />
@@ -318,7 +319,7 @@ export default function About() {
             href={`mailto:${data.socials.email}`}
             whileHover={{ backgroundColor: F.charcoal }}
             transition={{ duration: 0.2 }}
-            className="flex items-center justify-between px-8 md:px-12 py-5 group"
+            className="flex items-center justify-between px-5 md:px-12 py-5 group"
             style={{ borderTop: `1px solid ${F.border}`, background: F.dark, color: F.bg }}>
             <div>
               <p className="text-xs uppercase tracking-widest font-black mb-0.5" style={{ color: F.goldLight }}>
