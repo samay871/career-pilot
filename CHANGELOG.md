@@ -1,3 +1,10 @@
+# [1.133.0](https://github.com/anurag3407/career-pilot/compare/v1.132.0...v1.133.0) (2026-06-03)
+
+
+### Features
+
+* **portfolio:** implement modern, mobile-optimized elevator pitch template ([5cd3e53](https://github.com/anurag3407/career-pilot/commit/5cd3e53e2981cab8afb4dda8c09c6dd8eb60d4be))
+
 # [1.132.0](https://github.com/anurag3407/career-pilot/compare/v1.131.0...v1.132.0) (2026-06-03)
 
 
