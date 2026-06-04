@@ -43,7 +43,9 @@ export const cspHeaders = helmet({
         "https://accounts.google.com",
       ],
       objectSrc: ["'none'"],
-      upgradeInsecureRequests: [],
+      ...(process.env.NODE_ENV === 'production'
+        ? { upgradeInsecureRequests: [] }
+        : {}),
     },
   },
 });
