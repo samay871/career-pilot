@@ -3,6 +3,8 @@
  * Main Application Component with Route-based Code Splitting
  * Implements lazy loading for improved performance
  */
+
+import VercelDeploy from "./components/portfolio/templates/Vercel_Deploy/index";
 import React, { useState, useEffect, lazy, Suspense } from 'react';
 import StockTicker from "./components/portfolio/templates/Finance_Corporate/StockTicker";
 import Deployments from './pages/Deployments'
@@ -102,6 +104,11 @@ import CassetteMixtape from './components/portfolio/templates/Cassette_Mixtape/i
 import MagneticDock from './components/portfolio/templates/Magnetic_Dock/index.jsx';
 import Hero from './components/portfolio/templates/Magazine_Editorial/Hero';
 import ColorBlock from './components/portfolio/templates/Color_Block/index.jsx';
+import OceanDepths from './components/portfolio/templates/Ocean_Depths/index.jsx';
+import NeonCityscape from './components/portfolio/templates/Neon_Cityscape/index.jsx';
+import PlanetaryOrbit from './components/portfolio/templates/Planetary_Orbit/index.jsx';
+import LowPolyTerrain from './components/portfolio/templates/Low_Poly_Terrain/index.jsx';
+import HighFashion from './components/portfolio/templates/High_Fashion/index.jsx';
 import TestSocialLinks from './pages/TestSocialLinks';
 
 function LoadingScreen({ label }) {
