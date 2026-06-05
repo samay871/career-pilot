@@ -1,3 +1,44 @@
+# [1.155.0](https://github.com/anurag3407/career-pilot/compare/v1.154.0...v1.155.0) (2026-06-05)
+
+
+### Bug Fixes
+
+* add accessible project action links ([291fc4f](https://github.com/anurag3407/career-pilot/commit/291fc4ff991ab68098135d5be6cde0a2c2aa95dc))
+
+
+### Features
+
+* add terminal CLI projects section ([4992be0](https://github.com/anurag3407/career-pilot/commit/4992be0343ace8d94ad9ddacf169c205c5df0828))
+* create Terminal CLI hero section ([57b4460](https://github.com/anurag3407/career-pilot/commit/57b4460d4c01f3191c8e8b6b112ad39146b49554))
+
+# [1.154.0](https://github.com/anurag3407/career-pilot/compare/v1.153.0...v1.154.0) (2026-06-05)
+
+
+### Bug Fixes
+
+* remove SMTP credential pattern from docs ([817d091](https://github.com/anurag3407/career-pilot/commit/817d09198905dd63cd2d6ff2e1e2bc3fb792be1b))
+* sanitize env examples and resolve Tailwind utility issues ([96f7d01](https://github.com/anurag3407/career-pilot/commit/96f7d0108395b158fad0a2e82d571cf5a6bd52fc))
+* simplify email password placeholder ([d6da883](https://github.com/anurag3407/career-pilot/commit/d6da883d5afc7080237f150704e9a43c425e75f0))
+
+
+### Features
+
+* **ui:** implement skeleton loaders across the platform ([38f3d78](https://github.com/anurag3407/career-pilot/commit/38f3d78d075baa0a5278d13c6a13666795d90d96))
+
+# [1.153.0](https://github.com/anurag3407/career-pilot/compare/v1.152.0...v1.153.0) (2026-06-05)
+
+
+### Features
+
+* add Remote.co, WeWorkRemotely, and RemoteOK job scraper ([#553](https://github.com/anurag3407/career-pilot/issues/553)) ([0995495](https://github.com/anurag3407/career-pilot/commit/09954950202a12ea802ea25ee7f5e3982a699e99))
+
+# [1.152.0](https://github.com/anurag3407/career-pilot/compare/v1.151.0...v1.152.0) (2026-06-05)
+
+
+### Features
+
+* **analytics:** add ResumePerformance component and chart.js dependency ([a191b8b](https://github.com/anurag3407/career-pilot/commit/a191b8b508850077fea1425e39be06ea99bd3a1b))
+
 # [1.151.0](https://github.com/anurag3407/career-pilot/compare/v1.150.0...v1.151.0) (2026-06-04)
 
 
