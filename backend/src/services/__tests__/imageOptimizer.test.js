@@ -12,7 +12,10 @@ async function testOptimizeVariants() {
   try {
     buffer = await fs.readFile(SAMPLE);
   } catch (e) {
-    throw new Error(`Test fixture not found: ${SAMPLE}. Please add a sample.jpg to tests/fixtures/`);
+    if (e && typeof e === 'object' && e.code === 'ENOENT') {
+      throw new Error(`Test fixture not found: ${SAMPLE}. Please add a sample.jpg to tests/fixtures/`);
+    }
+    throw e;
   }
 
   const res = await optimizeBuffer(buffer, { widths: [null, 100], formats: ['webp', 'jpeg'], quality: 70 });
