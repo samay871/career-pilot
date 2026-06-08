@@ -100,7 +100,7 @@ router.post('/start', verifyToken, extractAIProvider, aiRateLimiter, validate(st
     });
 }));
 
-router.post('/:id/answer', verifyToken, extractAIProvider, aiRateLimiter, validate(submitAnswerSchema), asyncHandler(async (req, res) => {
+router.post('/:id([0-9a-fA-F]{24})/answer', verifyToken, extractAIProvider, aiRateLimiter, validate(submitAnswerSchema), asyncHandler(async (req, res) => {
     const { id } = req.params;
     const { questionId, transcript, duration, expressionMetrics } = req.body;
 
@@ -156,7 +156,7 @@ router.post('/:id/answer', verifyToken, extractAIProvider, aiRateLimiter, valida
     });
 }));
 
-router.post('/:id/complete', verifyToken, extractAIProvider, aiRateLimiter, asyncHandler(async (req, res) => {
+router.post('/:id([0-9a-fA-F]{24})/complete', verifyToken, extractAIProvider, aiRateLimiter, asyncHandler(async (req, res) => {
     const { id } = req.params;
 
     const interview = await Interview.findOne({ _id: id, odId: req.user.uid });
@@ -216,7 +216,7 @@ router.get('/analytics', verifyToken, asyncHandler(async (req, res) => {
     });
 }));
 
-router.get('/:id', verifyToken, asyncHandler(async (req, res) => {
+router.get('/:id([0-9a-fA-F]{24})', verifyToken, asyncHandler(async (req, res) => {
     const { id } = req.params;
 
     const interview = await Interview.findOne({ _id: id, odId: req.user.uid }).lean();
