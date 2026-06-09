@@ -1,3 +1,15 @@
+# [1.203.0](https://github.com/anurag3407/career-pilot/compare/v1.202.0...v1.203.0) (2026-06-09)
+
+
+### Bug Fixes
+
+* **ai-engine:** personalize fallback career recommendations ([f988c19](https://github.com/anurag3407/career-pilot/commit/f988c19cefbb0d8201e6d1f61f138fafb3a511e5))
+
+
+### Features
+
+* **ai-engine:** add career path suggester service ([3179578](https://github.com/anurag3407/career-pilot/commit/31795783b63e1961b45f1a3d470f4412dc57910b))
+
 # [1.202.0](https://github.com/anurag3407/career-pilot/compare/v1.201.0...v1.202.0) (2026-06-09)
 
 
