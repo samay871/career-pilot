@@ -1,3 +1,11 @@
+# [1.201.0](https://github.com/anurag3407/career-pilot/compare/v1.200.0...v1.201.0) (2026-06-09)
+
+
+### Features
+
+* added AI assisted mock interview with LLM memory ([0fe5623](https://github.com/anurag3407/career-pilot/commit/0fe5623fbbd4ab3e157b6d864a122388ee3d5508))
+* added AI assisted mock interview with LLM memory and camera with mic assisted feature. ([38dda1d](https://github.com/anurag3407/career-pilot/commit/38dda1dabc61616185c2e43855cf2df4bc5fc1e6))
+
 # [1.200.0](https://github.com/anurag3407/career-pilot/compare/v1.199.0...v1.200.0) (2026-06-09)
 
 
