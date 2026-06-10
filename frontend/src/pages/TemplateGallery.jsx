@@ -156,23 +156,6 @@ function FilterSelect({ value, onChange, options, className = "" }) {
   );
 }
 
-const TemplateHeroPreview = ({ templateId, portfolioData }) => {
-  const Component = useMemo(() => {
-    if (!templateId) return null;
-    return React.lazy(
-      () => import(`../components/portfolio/templates/${templateId}/index.jsx`)
-    );
-  }, [templateId]);
-
-  if (!templateId) return null;
-  return (
-    <Suspense fallback={<div className="w-full h-full bg-muted/50" />}>
-      <PortfolioProvider portfolioData={portfolioData}>
-        <Component portfolioData={portfolioData} />
-      </PortfolioProvider>
-    </Suspense>
-  );
-};
 
 function TemplateCard({ template, hovered, onHover, onLeave, onUse, aiDraft }) {
   return (
@@ -210,9 +193,12 @@ function TemplateCard({ template, hovered, onHover, onLeave, onUse, aiDraft }) {
               transform: 'scale(0.3)',
             }}
           >
-            <TemplateHeroPreview
-              templateId={template.id}
-              portfolioData={aiDraft}
+            <iframe
+              src={`/preview/${template.id}`}
+              className="w-full h-full border-none pointer-events-none"
+              title={template.title}
+              loading="lazy"
+              sandbox="allow-scripts allow-same-origin"
             />
           </div>
         ) : (

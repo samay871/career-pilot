@@ -9,6 +9,7 @@ import React, { useState, useEffect, lazy, Suspense } from 'react';
 import StockTicker from "./components/portfolio/templates/Finance_Corporate/StockTicker";
 import Deployments from './pages/Deployments'
 import TemplateGallery from "./pages/TemplateGallery";
+import TemplatePreviewOnly from "./pages/TemplatePreviewOnly";
 
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
@@ -253,6 +254,7 @@ function AppRoutes() {
 
         {/* Template Gallery Route (Registered at /templates) */}
         <Route path="/templates" element={<TemplateGallery />} />
+        <Route path="/preview/:templateId" element={<TemplatePreviewOnly />} />
         <Route path="/cover-letter" element={<CoverLetter />} />
         
 
