@@ -1,3 +1,10 @@
+# [1.219.0](https://github.com/anurag3407/career-pilot/compare/v1.218.1...v1.219.0) (2026-06-11)
+
+
+### Features
+
+* add Fake WebOS Operating System portfolio template ([68fa90a](https://github.com/anurag3407/career-pilot/commit/68fa90af5629ecdb45847b5b4936dda003b3bedf))
+
 ## [1.218.1](https://github.com/anurag3407/career-pilot/compare/v1.218.0...v1.218.1) (2026-06-11)
 
 
