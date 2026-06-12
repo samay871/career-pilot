@@ -1,5 +1,18 @@
 export const templates = [
   {
+    "id": "ASCII_Art_Terminal_Code",
+    "title": "ASCII Art Terminal Code",
+    "category": "Portfolio",
+    "colorScheme": "Dark",
+    "layout": "Interactive",
+    "author": "Raman Kumar",
+    "views": 2800,
+    "rating": 4.9,
+    "image": "/template-previews/ASCII_Art_Terminal_Code.png",
+    "createdAt": "2026-06-12",
+    "isComplete": true
+  },
+  {
     "id": "2D_Retro_8bit",
     "title": "2D Retro 8bit",
     "category": "Portfolio",
