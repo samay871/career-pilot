@@ -1,3 +1,10 @@
+# [1.223.0](https://github.com/anurag3407/career-pilot/compare/v1.222.0...v1.223.0) (2026-06-12)
+
+
+### Features
+
+* add notes functionality to Job Tracker cards ([6237a7a](https://github.com/anurag3407/career-pilot/commit/6237a7a79a77f73a1ecae164c9b3acea1fff4ddd))
+
 # [1.222.0](https://github.com/anurag3407/career-pilot/compare/v1.221.0...v1.222.0) (2026-06-11)
 
 
