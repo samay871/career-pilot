@@ -1,5 +1,18 @@
 export const templates = [
   {
+    id: "Sommelier_Wine_Cellar_Racks",
+    title: "Sommelier Wine Cellar Racks",
+    category: "Portfolio",
+    colorScheme: "Dark",
+    layout: "Interactive",
+    author: "System",
+    views: 999999,
+    rating: 5.0,
+    image: "/templates/Sommelier_Wine_Cellar_Racks.png",
+    createdAt: "2026-06-14",
+    isComplete: true
+  },
+  {
     id: "Michelin_Star_Chef_Plating",
     title: "Michelin Star Chef Plating",
     category: "Portfolio",
