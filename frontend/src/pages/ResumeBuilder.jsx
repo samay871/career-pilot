@@ -81,6 +81,9 @@ export default function ResumeBuilder() {
   const [selectedVersion, setSelectedVersion] = useState(null)
   
   const [recommendedSkills, setRecommendedSkills] = useState([])
+  const [profileScore, setProfileScore] = useState(0)
+  const [profileIssues, setProfileIssues] = useState([])
+
   useEffect(() => {
   const suggestions = []
   let score = 100
@@ -139,6 +142,45 @@ export default function ResumeBuilder() {
   setReadabilityScore(Math.max(score, 0))
   setClaritySuggestions(suggestions)
 }, [personal, experience, projects])
+
+useEffect(() => {
+  let score = 100
+  const issues = []
+
+  if (!personal.linkedin) {
+    score -= 30
+    issues.push("LinkedIn profile missing")
+  }
+
+  if (!personal.github) {
+    score -= 30
+    issues.push("GitHub profile missing")
+  }
+
+  if (!personal.portfolio) {
+    score -= 20
+    issues.push("Portfolio website missing")
+  }
+
+  if (
+    personal.linkedin &&
+    !personal.linkedin.includes("linkedin.com")
+  ) {
+    score -= 10
+    issues.push("Invalid LinkedIn URL")
+  }
+
+  if (
+    personal.github &&
+    !personal.github.includes("github.com")
+  ) {
+    score -= 10
+    issues.push("Invalid GitHub URL")
+  }
+
+  setProfileScore(Math.max(score, 0))
+  setProfileIssues(issues)
+}, [personal])
 
   // ─────────────────── ATS Keyword Assessment Loop ───────────────────
   useEffect(() => {
@@ -600,6 +642,23 @@ useEffect(() => {
                 />
                 <FieldError msg={personalErrors.github} />
               </div>
+            </div>
+
+            {/* Portfolio */}
+            <div>
+              <label className="block text-sm font-medium mb-1">
+                Portfolio URL
+              </label>
+
+              <input
+                type="url"
+                className={inputCls('portfolio')}
+                value={personal.portfolio}
+                onChange={e =>
+                  updatePersonal('portfolio', e.target.value)
+                }
+                placeholder="https://yourportfolio.com"
+              />
             </div>
 
             {/* Summary */}
@@ -1197,6 +1256,61 @@ useEffect(() => {
     </div>
   </div>
 )}
+
+<div className="mb-6 p-4 rounded-xl border border-border bg-muted">
+  <div className="flex justify-between items-center mb-2">
+    <h3 className="font-semibold">
+      Portfolio Social Profile Score
+    </h3>
+
+    <span className="text-primary font-bold">
+      {profileScore}/100
+    </span>
+  </div>
+
+  <div className="w-full bg-secondary rounded-full h-3">
+    <div
+      className="bg-primary h-3 rounded-full"
+      style={{ width: `${profileScore}%` }}
+    />
+  </div>
+
+  {profileIssues.length > 0 && (
+    <div className="mt-4">
+      <h4 className="font-medium mb-2">
+        Optimization Suggestions
+      </h4>
+
+      <ul className="list-disc list-inside text-sm text-muted-foreground">
+        {profileIssues.map((issue, index) => (
+          <li key={index}>{issue}</li>
+        ))}
+      </ul>
+    </div>
+  )}
+</div>
+
+<div className="mt-4 flex flex-wrap gap-2">
+
+  {personal.linkedin && (
+    <span className="px-2 py-1 bg-green-500/20 text-green-500 rounded">
+      LinkedIn Added
+    </span>
+  )}
+
+  {personal.github && (
+    <span className="px-2 py-1 bg-green-500/20 text-green-500 rounded">
+      GitHub Added
+    </span>
+  )}
+
+  {personal.portfolio && (
+    <span className="px-2 py-1 bg-green-500/20 text-green-500 rounded">
+      Portfolio Added
+    </span>
+  )}
+
+</div>
 
 <div className="mb-6 p-4 rounded-xl border border-border bg-muted">
   <div className="flex justify-between items-center mb-2">
