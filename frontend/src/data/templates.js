@@ -2977,7 +2977,9 @@ export const templates = [
     "author": "System",
     "views": 1050,
     "rating": 4.8,
-    "image": "/template-previews/crossword_puzzle_word_fill.png",
+    "image": "/template-previews/crossword_puzzle_word_fill.png"
+  },
+  {
     "id": "Autumn_Forest_Leaf_Fall",
     "title": "Autumn Forest Leaf Fall",
     "category": "Portfolio",
