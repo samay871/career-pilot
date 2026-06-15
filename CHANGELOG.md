@@ -1,3 +1,10 @@
+## [1.244.3](https://github.com/anurag3407/career-pilot/compare/v1.244.2...v1.244.3) (2026-06-15)
+
+
+### Bug Fixes
+
+* **cors:** validate FRONTEND_URL origin format and enforce in production ([6e79d24](https://github.com/anurag3407/career-pilot/commit/6e79d2451d75ad1d3dc693eb58fe118fe3f92bb5))
+
 ## [1.244.2](https://github.com/anurag3407/career-pilot/compare/v1.244.1...v1.244.2) (2026-06-15)
 
 
