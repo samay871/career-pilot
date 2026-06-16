@@ -6,7 +6,8 @@ import {
   signOut,
   GoogleAuthProvider,
   signInWithPopup,
-  updateProfile
+  updateProfile,
+  sendEmailVerification
 } from 'firebase/auth'
 import { auth } from '../config/firebase'
 import { AuthContext } from './AuthContext'
@@ -57,6 +58,9 @@ export function AuthProvider({ children }) {
   const signup = async (email, password, displayName) => {
     if (!auth) throw new Error("Authentication service is not configured. Please check your environment variables and authentication provider setup. Refer to the project setup documentation for configuration instructions.")
     const result = await createUserWithEmailAndPassword(auth, email, password)
+
+    await sendEmailVerification(result.user)
+    
     if (displayName) {
       await updateProfile(result.user, { displayName })
     }
