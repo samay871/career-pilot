@@ -39,8 +39,7 @@ export default function Navbar() {
   const [searchDropdownOpen, setSearchDropdownOpen] = useState(false)
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false)
   
-  const [notificationCount] = useState(3)
-
+  const [notificationCount] = useState(0)
   // Refs for click outside handling
   const searchRef = useRef(null)
   const profileRef = useRef(null)

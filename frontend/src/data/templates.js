@@ -1,5 +1,19 @@
 export const templates = [
   {
+    id: "Bruno_Simon_Playground",
+    title: "Bruno Simon Playground",
+    category: "Portfolio",
+    colorScheme: "Colorful",
+    layout: "Interactive",
+    author: "System",
+    views: 9999998,
+    rating: 5.0,
+    image: "/template-previews/Bruno_Simon_Playground.png",
+    createdAt: "2026-06-18",
+    description: "A playful interactive portfolio inspired by Bruno Simon's game-like web worlds, featuring bold colors, kinetic cards, pointer-reactive lighting, and a cartoon vehicle hero.",
+    isComplete: true
+  },
+  {
     id: "Typewriter_Keystroke_Sequence",
     title: "Typewriter Keystroke Sequence",
     category: "Portfolio",
@@ -1322,6 +1336,42 @@ rating: 4.8,
     "rating": 4.5,
     "image": "/template-previews/GitHub_Profile.png",
     "createdAt": "2026-05-01"
+  },
+  {
+    "id": "Minimal_Dark_Fluid",
+    "title": "Minimal Dark Fluid",
+    "category": "Portfolio",
+    "colorScheme": "Dark",
+    "layout": "List",
+    "author": "System",
+    "views": 0,
+    "rating": 5.0,
+    "image": "/template-previews/Minimal_Dark_Fluid.png",
+    "createdAt": "2026-06-14"
+  },
+  {
+    "id": "Terminal_Skills",
+    "title": "Terminal Skills",
+    "category": "Portfolio",
+    "colorScheme": "Dark",
+    "layout": "Grid",
+    "author": "System",
+    "views": 99999999,
+    "rating": 5.0,
+    "image": "/template-previews/Terminal_Skills.png",
+    "createdAt": "2026-06-15"
+  },
+  {
+    "id": "ChiragChrg_Theme",
+    "title": "ChiragChrg Theme",
+    "category": "Portfolio",
+    "colorScheme": "Dark",
+    "layout": "Single Page",
+    "author": "System",
+    "views": 999999990,
+    "rating": 5.0,
+    "image": "/template-previews/ChiragChrg_Theme.png",
+    "createdAt": "2026-06-15"
   },
   {
     "id": "Glassmorphism",
