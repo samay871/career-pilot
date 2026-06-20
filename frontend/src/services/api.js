@@ -632,6 +632,28 @@ export const enhanceApi = {
       body: JSON.stringify({ resumeText, jobDescription })
     })
     return handleResponse(response)
+  },
+
+  // Translate resume to a target language while preserving formatting.
+  async translateResume(resumeText, targetLanguage, sourceLanguage = 'auto-detect') {
+    const headers = await getAuthHeaders()
+    const response = await fetch(`${API_BASE}/enhance/translate`, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({ resumeText, targetLanguage, sourceLanguage })
+    })
+    return handleResponse(response)
+  },
+
+  // One-Click Resume Tailor: rewrite resume text to match a job description.
+  async tailorResume(resumeText, jobDescription, jobRole = '') {
+    const headers = await getAuthHeaders()
+    const response = await fetch(`${API_BASE}/enhance/tailor`, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({ resumeText, jobDescription, jobRole })
+    })
+    return handleResponse(response)
   }
 }
 

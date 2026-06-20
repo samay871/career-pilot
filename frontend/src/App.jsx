@@ -43,6 +43,8 @@ const OpenRouterCallback = lazy(() => import("./pages/OpenRouterCallback"));
 const Upload = lazy(() => import("./pages/Upload"));
 const Enhance = lazy(() => import("./pages/Enhance"));
 const ResumeView = lazy(() => import("./pages/ResumeView"));
+const ResumeTemplates = lazy(() => import("./pages/ResumeTemplates"));
+const ResumeExamples = lazy(() => import("./pages/ResumeExamples"));
 const JobAlerts = lazy(() => import("./pages/JobAlerts"));
 const InterviewPrep = lazy(() => import("./pages/InterviewPrep"));
 const InterviewHistory = lazy(() => import("./pages/InterviewHistory"));
@@ -343,6 +345,8 @@ function AppRoutes() {
         <Route path="/enhance/:resumeId" element={<ProtectedRoute><Suspense fallback={<LoadingScreen label="Loading Resume Enhancer..." />}><Enhance /></Suspense></ProtectedRoute>} />
         <Route path="/shared/:shareToken" element={<SharedResumeView />} />
         <Route path="/resume/:resumeId" element={<ProtectedRoute><Suspense fallback={<LoadingScreen label="Loading Resume..." />}><ResumeView /></Suspense></ProtectedRoute>} />
+        <Route path="/resume-templates" element={<ProtectedRoute><Suspense fallback={<LoadingScreen label="Loading Templates..." />}><ResumeTemplates /></Suspense></ProtectedRoute>} />
+        <Route path="/resume-examples" element={<ProtectedRoute><Suspense fallback={<LoadingScreen label="Loading Examples..." />}><ResumeExamples /></Suspense></ProtectedRoute>} />
         <Route
           path="/jobs"
           element={

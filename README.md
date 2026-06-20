@@ -38,6 +38,7 @@
 - [Getting Started](#getting-started)
 - [Environment Variables](#environment-variables)
 - [Project Structure](#project-structure)
+- [Detailed Documentation](#detailed-documentation)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
 - [Maintainers](#maintainers)
@@ -132,6 +133,17 @@ career-pilot/
 ├── CODE_OF_CONDUCT.md
 └── LICENSE
 ```
+
+## Detailed Documentation
+
+For a complete technical map of the repository, see [docs/PROJECT_DOCUMENTATION.md](docs/PROJECT_DOCUMENTATION.md). It covers frontend and backend architecture, route groups, data models, environment variables, local setup, build/test commands, deployment, security, troubleshooting, and documentation maintenance guidance.
+
+Related references:
+
+- [ARCHITECTURE.md](ARCHITECTURE.md) — system diagrams and deeper technical flows.
+- [API_DOCS/README.md](API_DOCS/README.md) — API documentation index.
+- [docs/environment-setup.md](docs/environment-setup.md) — environment variable setup.
+- [docs/user-guide.md](docs/user-guide.md) — user onboarding and feature walkthrough.
 
 ## Roadmap
 

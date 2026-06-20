@@ -1,5 +1,5 @@
 import express from 'express';
-import { enhanceResume, generateSummary, suggestImprovements, analyzeATSScore, analyzeResumeComprehensive, analyzeBulletPoints, generateBeforeAfter, getVerbLists, getSystemPrompt, analyzeSkillGap } from '../config/langchain.js';
+import { enhanceResume, generateSummary, suggestImprovements, analyzeATSScore, analyzeResumeComprehensive, analyzeBulletPoints, generateBeforeAfter, getVerbLists, getSystemPrompt, analyzeSkillGap, translateResume, tailorResume } from '../config/langchain.js';
 import { computeATSScore } from '../services/atsScorer.js';
 import { generateEmails } from '../services/emailGeneratorService.js';
 import { predictTrajectory } from '../services/ai/careerTrajectory.js';
@@ -19,6 +19,8 @@ import {
   optimizeLinkedInSchema,
   resumeScoreSchema,
   skillGapSchema,
+  translateResumeSchema,
+  tailorResumeSchema,
 } from '../schemas/enhance.schema.js';
 
 const router = express.Router();
@@ -406,6 +408,56 @@ router.post('/skill-gap', verifyToken, extractAIProvider, aiRateLimiter, validat
   } catch (error) {
     console.error('Skill gap analysis error:', error);
     throw new ApiError(500, 'Failed to analyze skill gap. Please try again.');
+  }
+}));
+
+// Translate a resume into a target language while preserving formatting.
+// Powers the "Translate" tool in the resume viewer — useful for international
+// job applications.
+router.post('/translate', verifyToken, extractAIProvider, aiRateLimiter, validate(translateResumeSchema), asyncHandler(async (req, res) => {
+  const { resumeText, targetLanguage, sourceLanguage } = req.body;
+  assertResumeTextWithinLimit(resumeText);
+
+  try {
+    const result = await translateResume(resumeText, targetLanguage, sourceLanguage, req.aiProvider);
+
+    res.json({
+      success: true,
+      data: {
+        translatedText: result.translatedText,
+        targetLanguage: result.targetLanguage,
+        sourceLanguage: result.sourceLanguage,
+      },
+      provider: result.provider,
+      providerSource: req.aiProviderSource,
+    });
+  } catch (error) {
+    console.error('Resume translation error:', error);
+    throw new ApiError(500, 'Failed to translate resume. Please try again.');
+  }
+}));
+
+// One-Click Resume Tailor — rewrites the resume to match a job description.
+// Powers the "Tailor to this job" tool in the resume viewer.
+router.post('/tailor', verifyToken, extractAIProvider, aiRateLimiter, validate(tailorResumeSchema), asyncHandler(async (req, res) => {
+  const { resumeText, jobDescription, jobRole } = req.body;
+  assertResumeTextWithinLimit(resumeText);
+
+  try {
+    const result = await tailorResume(resumeText, jobDescription, jobRole, req.aiProvider);
+
+    res.json({
+      success: true,
+      data: {
+        tailoredText: result.tailoredText,
+        jobRole: jobRole || null,
+      },
+      provider: result.provider,
+      providerSource: req.aiProviderSource,
+    });
+  } catch (error) {
+    console.error('Resume tailoring error:', error);
+    throw new ApiError(500, 'Failed to tailor resume. Please try again.');
   }
 }));
 

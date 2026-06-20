@@ -104,12 +104,13 @@ router.get('/:resumeId', verifyToken, asyncHandler(async (req, res) => {
 // Create a new resume
 router.post('/', verifyToken, validate(createResumeSchema), asyncHandler(async (req, res) => {
   const userId = req.user.uid;
-  const { 
-    originalText, 
-    enhancedText, 
-    jobRole, 
+  const {
+    originalText,
+    enhancedText,
+    jobRole,
     preferences,
-    title 
+    title,
+    customSections
   } = req.body;
 
   if (!originalText) {
@@ -122,7 +123,8 @@ router.post('/', verifyToken, validate(createResumeSchema), asyncHandler(async (
     enhancedText: enhancedText || null,
     jobRole: jobRole || null,
     preferences: preferences || {},
-    title: title || `Resume - ${new Date().toLocaleDateString()}`
+    title: title || `Resume - ${new Date().toLocaleDateString()}`,
+    customSections: Array.isArray(customSections) ? customSections : [],
   });
 
   try {
@@ -185,7 +187,7 @@ router.put('/:resumeId', verifyToken, validate(updateResumeSchema), asyncHandler
   const userId = req.user.uid;
   const updates = req.body;
 
-  const allowedUpdates = ['originalText', 'enhancedText', 'jobRole', 'atsScore', 'preferences', 'title', 'pdfUrl', 'sectionOrder'];
+  const allowedUpdates = ['originalText', 'enhancedText', 'jobRole', 'atsScore', 'preferences', 'title', 'pdfUrl', 'sectionOrder', 'customSections'];
   const updateData = {};
   for (const key of allowedUpdates) {
     if (updates[key] !== undefined) updateData[key] = updates[key];
