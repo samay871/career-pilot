@@ -22,7 +22,7 @@
     <img src="https://img.shields.io/badge/Multi--AI-OpenAI%20%7C%20Anthropic%20%7C%20Groq%20%7C%20Gemini-7c3aed" alt="Multi-AI"/>
   </p>
   <p>
-    Documentation · <a href="#-community">Discord</a> · License: <a href="LICENSE">MIT</a> · Built with ❤️ by the Career Pilot community
+    Documentation · <a href="#-community">Discord : <a href=https://discord.gg/dpDMVywS"></a> · License: <a href="LICENSE">MIT</a> · Built with ❤️ by the Career Pilot community
   </p>
 </div>
 
