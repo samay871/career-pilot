@@ -1,3 +1,10 @@
+# [1.262.0](https://github.com/anurag3407/career-pilot/compare/v1.261.0...v1.262.0) (2026-06-22)
+
+
+### Features
+
+* implement Infinite Canvas portfolio template ([#1878](https://github.com/anurag3407/career-pilot/issues/1878)) ([#4175](https://github.com/anurag3407/career-pilot/issues/4175)) ([bfd40d8](https://github.com/anurag3407/career-pilot/commit/bfd40d885c3af0f8cd6b05350c0f9564e0a99ad2))
+
 # [1.261.0](https://github.com/anurag3407/career-pilot/compare/v1.260.1...v1.261.0) (2026-06-22)
 
 
